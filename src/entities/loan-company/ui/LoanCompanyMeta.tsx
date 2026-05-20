@@ -25,7 +25,7 @@ export function LoanCompanyMeta({ company, className }: LoanCompanyMetaProps) {
         {company.products.map((product) => (
           <span
             key={product}
-            className="rounded-lg bg-muted px-2 py-0.5 text-xs text-foreground"
+            className="rounded-md bg-muted px-2 py-0.5 text-xs text-foreground"
           >
             {product}
           </span>

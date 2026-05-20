@@ -27,7 +27,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           type="search"
           value={value}
           className={cn(
-            'flex h-11 w-full rounded-xl border border-border bg-background py-2 pl-11 pr-10 text-base text-foreground transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+            'flex h-11 w-full rounded-lg border border-border bg-background py-2 pl-11 pr-10 text-base text-foreground transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
           )}
           {...props}
         />
@@ -35,7 +35,7 @@ export const SearchBar = forwardRef<HTMLInputElement, SearchBarProps>(
           <button
             type="button"
             onClick={onClear}
-            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             aria-label="검색어 지우기"
           >
             <X className="h-4 w-4" />

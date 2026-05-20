@@ -63,7 +63,7 @@ function ComponentSection({
   return (
     <section className="flex flex-col gap-4">
       <SectionTitle title={title} description={description} />
-      <div className="rounded-2xl border border-border bg-surface p-5">{children}</div>
+      <div className="rounded-xl border border-border bg-surface p-5">{children}</div>
     </section>
   );
 }
@@ -349,7 +349,7 @@ export function TestComponentsPage() {
                 { name: 'Foreground', class: 'bg-foreground' },
               ].map((color) => (
                 <div key={color.name} className="flex flex-col gap-1.5">
-                  <div className={cn('h-12 rounded-xl', color.class)} />
+                  <div className={cn('h-12 rounded-lg', color.class)} />
                   <span className="text-xs text-muted-foreground">
                     {color.name}
                   </span>

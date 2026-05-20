@@ -17,10 +17,10 @@ const sheetVariants = cva(
   {
     variants: {
       side: {
-        top: 'inset-x-0 top-0 rounded-b-2xl border-b',
-        bottom: 'inset-x-0 bottom-0 rounded-t-2xl border-t',
-        left: 'inset-y-0 left-0 h-full w-3/4 max-w-sm rounded-r-2xl border-r',
-        right: 'inset-y-0 right-0 h-full w-3/4 max-w-sm rounded-l-2xl border-l',
+        top: 'inset-x-0 top-0 rounded-b-xl border-b',
+        bottom: 'inset-x-0 bottom-0 rounded-t-xl border-t',
+        left: 'inset-y-0 left-0 h-full w-3/4 max-w-sm rounded-r-xl border-r',
+        right: 'inset-y-0 right-0 h-full w-3/4 max-w-sm rounded-l-xl border-l',
       },
     },
     defaultVariants: {
@@ -62,7 +62,7 @@ export const SheetContent = forwardRef<
     >
       {children}
       <DialogPrimitive.Close
-        className="absolute right-4 top-4 rounded-lg p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+        className="absolute right-4 top-4 rounded-md p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
         aria-label="닫기"
       >
         <X className="h-5 w-5" />

@@ -81,7 +81,7 @@ export function AppHeader() {
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
                   className={cn(
-                    'rounded-xl px-4 py-3 text-base font-medium text-foreground transition-colors hover:bg-muted',
+                    'rounded-lg px-4 py-3 text-base font-medium text-foreground transition-colors hover:bg-muted',
                   )}
                 >
                   {item.label}
