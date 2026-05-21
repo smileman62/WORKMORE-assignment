@@ -73,3 +73,28 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
 }
+
+/* 스크롤은 유지하고 스크롤바만 숨김 */
+*,
+*::before,
+*::after {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+html,
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
