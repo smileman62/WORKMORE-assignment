@@ -20,7 +20,7 @@ export function BusinessLoginPage() {
           <CardHeader>
             <CardTitle className="text-base">로그인</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col gap-4 pt-0">
+          <CardContent className="flex flex-col gap-4 p-5 pt-0">
             <div className="flex flex-col gap-2">
               <Label htmlFor="biz-id">아이디</Label>
               <Input id="biz-id" placeholder="사업자 아이디" autoComplete="username" />

@@ -1,5 +1,27 @@
 export type ConsultationType = 'phone' | 'sms' | 'both';
 
+/** 상세 페이지 업체 등록 정보 */
+export type CompanyRegistration = {
+  registrationNumber?: string;
+  representativeName?: string;
+  registrationAuthority?: string;
+  registrationAuthorityPhone?: string;
+  officeAddress?: string;
+};
+
+/** 상세 페이지 상품 정보 (대출나라 상품정보 블록) */
+export type CompanyProductDetail = {
+  monthlyInterestRate?: string;
+  annualInterestRate?: string;
+  loanLimit?: string;
+  overdueInterestRate?: string;
+  additionalCost?: string;
+  earlyRepaymentFee?: string;
+  repaymentMethod?: string;
+  loanPeriod?: string;
+  serviceRegion?: string;
+};
+
 export type Company = {
   id: string;
   name: string;
@@ -23,11 +45,15 @@ export type Company = {
   /** 카드 업체특징 칩 */
   features?: string[];
   consultationType: ConsultationType;
-  /** 상세 페이지용 */
+  /** 상세 페이지용 — 업체명 아래 짧은 소개 */
   description?: string;
+  /** 상세 페이지 부가설명 — 자세한 안내 본문 */
+  supplementaryDescription?: string;
   additionalCost?: string;
   consultationTime?: string;
   situations?: string[];
+  registration?: CompanyRegistration;
+  productDetail?: CompanyProductDetail;
 };
 
 /** @deprecated Company 사용 권장 */

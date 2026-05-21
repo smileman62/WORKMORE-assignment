@@ -103,13 +103,7 @@ export function AppFooter() {
           {/* 금리 및 상환 */}
           <section aria-labelledby="footer-rates">
             <FooterColumnTitle
-              action={
-                <FooterIconLink
-                  href={ROUTES.info}
-                  icon={Calculator}
-                  label="이자계산기"
-                />
-              }
+
             >
               금리 및 상환안내
             </FooterColumnTitle>

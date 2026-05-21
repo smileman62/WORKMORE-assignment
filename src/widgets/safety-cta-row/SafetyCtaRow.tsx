@@ -5,11 +5,14 @@ import {
   buildFraudNumberHref,
   buildVerifyCompanyHref,
 } from '@/entities/safety/lib/safetyLinks';
+import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button/Button';
 import { Card, CardContent } from '@/shared/ui/card/Card';
 
 export type SafetyCtaRowProps = {
   variant?: 'default' | 'compact';
+  /** sm: 14px, md: 16px 보조 문구 */
+  textSize?: 'sm' | 'md';
   /** 업체 상세 등에서 조회값을 미리 채울 때 사용 */
   businessName?: string;
   contactPhone?: string;
@@ -17,9 +20,11 @@ export type SafetyCtaRowProps = {
 
 export function SafetyCtaRow({
   variant = 'default',
+  textSize = 'sm',
   businessName,
   contactPhone,
 }: SafetyCtaRowProps) {
+  const bodyTextClass = textSize === 'md' ? 'text-base' : 'text-sm';
   const verifyHref = buildVerifyCompanyHref({
     businessName,
     phone: contactPhone,
@@ -55,7 +60,7 @@ export function SafetyCtaRow({
             </div>
             <div className="flex flex-col gap-1">
               <p className="font-semibold text-foreground">정식 업체 조회</p>
-              <p className="text-sm text-muted-foreground">
+              <p className={cn(bodyTextClass, 'text-muted-foreground')}>
                 상담 전 등록 여부를 먼저 확인하세요.
               </p>
             </div>
@@ -73,7 +78,7 @@ export function SafetyCtaRow({
             </div>
             <div className="flex flex-col gap-1">
               <p className="font-semibold text-foreground">사기 번호 검색</p>
-              <p className="text-sm text-muted-foreground">
+              <p className={cn(bodyTextClass, 'text-muted-foreground')}>
                 연락처가 신고 이력에 있는지 조회해 보세요.
               </p>
             </div>

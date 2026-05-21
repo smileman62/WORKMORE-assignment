@@ -183,7 +183,7 @@ export function TestComponentsPage() {
                 <CardTitle>카드 제목</CardTitle>
                 <CardDescription>카드 설명 텍스트입니다.</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-5 pt-0">
                 <p className="text-sm text-muted-foreground">
                   카드 본문 영역입니다.
                 </p>

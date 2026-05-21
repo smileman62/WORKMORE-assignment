@@ -948,6 +948,14 @@ export function cn(...inputs: Parameters<typeof clsx>) {
 
 컴포넌트 내부 class가 너무 길어지면 variant를 분리합니다.
 
+### Form Layout
+
+- 라벨 + 입력 한 줄은 **flex** 를 우선합니다.
+- `grid-cols-[minmax(...)]` 같은 복잡한 그리드 트랙 계산식은 지양합니다.
+- 라벨은 `shrink-0 whitespace-nowrap` 로 텍스트 너비만 쓰고, 넓은 고정 너비(`sm:w-28` 등)로 입력과 떨어뜨리지 않습니다.
+- 라벨·입력 사이 간격은 행의 `sm:gap-2` 등으로 조절합니다.
+- 라벨과 `h-11` 입력·셀렉트는 라벨에 `sm:min-h-11 sm:items-center` 로 맞춥니다. 더 낮은 컨트롤(예: `min-h-6` 라디오)은 라벨 `min-h` 도 동일하게 맞춥니다.
+
 필요한 경우 `class-variance-authority`를 사용할 수 있습니다.
 
 ```tsx
@@ -1463,7 +1471,6 @@ Sheet/Dialog: rounded-2xl
 
 ```txt
 Section padding: py-12 ~ py-20
-Card padding: p-5 ~ p-6
 Mobile horizontal padding: px-4
 Desktop max width: max-w-6xl or max-w-7xl
 ```

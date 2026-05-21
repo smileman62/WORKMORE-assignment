@@ -1,4 +1,10 @@
 import { buildCompanyFeatures } from '@/entities/loan-company/lib/buildCompanyFeatures';
+import { buildCompanyProductDetail } from '@/entities/loan-company/lib/buildCompanyProductDetail';
+import { buildCompanyRegistration } from '@/entities/loan-company/lib/buildCompanyRegistration';
+import {
+  BITNA_SUPPLEMENTARY_DESCRIPTION,
+  buildSupplementaryDescription,
+} from '@/entities/loan-company/lib/buildSupplementaryDescription';
 import { generateExtraMockCompanies } from '@/entities/loan-company/model/generateExtraMockCompanies';
 
 import type { Company } from './types';
@@ -192,22 +198,45 @@ const mockCompanySource: Company[] = [
   },
   {
     id: 'company-10',
-    name: '대전믿음대부',
-    tagline: '대전·세종 직장인 전문',
-    summary: '직장인·사업자 소액·신용 상담.',
+    name: '빛나대부중개',
+    tagline: '24시 비대면 월변대출 최대한도 승인율UP',
+    summary: '전국 비대면 당일 승인·입금, 소득 있으면 직군 무관 상담.',
     regionLabel: '대전',
-    region: '대전 유성구',
-    products: ['직장인대출', '신용대출', '소액대출'],
-    loanLimit: '최대 2,500만원',
-    interestRate: '연 13% ~ 21%',
-    repaymentMethod: '원리금균등',
-    contactNumber: '042-111-2222',
+    region: '대전광역시 서구 월평북로 85, 355호 (월평동)',
+    products: ['월변대출', '비대면대출', '당일대출', '소액대출'],
+    loanLimit: '상담',
+    interestRate: '연 10% ~ 18%',
+    repaymentMethod: '상담 후 결정',
+    contactNumber: '010-8104-7147',
     isVerifiedAvailable: true,
     isRecommended: false,
     isAd: false,
-    consultationType: 'phone',
-    consultationTime: '09:00 ~ 20:00',
-    situations: ['직장인', '사업자'],
+    features: ['24시간 상담', '당일승인', '무방문'],
+    consultationType: 'both',
+    consultationTime: '365일 24시간',
+    description:
+      '고객님과의 신뢰를 가장 중요하게 생각하는 정식 등록 대부중개 업체입니다. 당일 승인·입금 중심으로 빠르게 상담해 드립니다.',
+    supplementaryDescription: BITNA_SUPPLEMENTARY_DESCRIPTION,
+    additionalCost: '무',
+    situations: ['직장인', '사업자', '무직자', '저신용자'],
+    registration: {
+      registrationNumber: '대전-4231',
+      representativeName: '강동균',
+      registrationAuthority: '대전 대전광역시 경제정책과',
+      registrationAuthorityPhone: '042-270-3516',
+      officeAddress: '대전광역시 서구 월평북로 85, 355호 (월평동)',
+    },
+    productDetail: {
+      monthlyInterestRate: '월 1% ~ 1.6%',
+      annualInterestRate: '연 10% ~ 18%',
+      loanLimit: '상담',
+      overdueInterestRate: '없음',
+      additionalCost: '무',
+      earlyRepaymentFee: '무',
+      repaymentMethod: '상담 후 결정',
+      loanPeriod: '상담',
+      serviceRegion: '전국',
+    },
   },
   {
     id: 'company-11',
@@ -945,6 +974,11 @@ export const mockCompanies: Company[] = mockCompanySource.map((company) => ({
     company.features && company.features.length > 0
       ? company.features.slice(0, 3)
       : buildCompanyFeatures(company),
+  supplementaryDescription:
+    company.supplementaryDescription ??
+    buildSupplementaryDescription(company.name),
+  registration: company.registration ?? buildCompanyRegistration(company),
+  productDetail: company.productDetail ?? buildCompanyProductDetail(company),
 }));
 
 /** @deprecated mockCompanies 사용 권장 */

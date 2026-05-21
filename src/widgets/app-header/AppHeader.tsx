@@ -51,12 +51,9 @@ export function AppHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden md:flex">
           <Button variant="ghost" size="sm" asChild>
             <Link href={ROUTES.businessLogin}>로그인</Link>
-          </Button>
-          <Button variant="primary" size="sm" asChild>
-            <Link href={ROUTES.search}>업체 찾기</Link>
           </Button>
         </div>
 
@@ -89,12 +86,9 @@ export function AppHeader() {
                 </Link>
               ))}
             </nav>
-            <div className="mt-6 flex flex-col gap-2">
+            <div className="mt-6">
               <Button variant="outline" fullWidth asChild>
                 <Link href={ROUTES.businessLogin}>로그인</Link>
-              </Button>
-              <Button variant="primary" fullWidth asChild>
-                <Link href={ROUTES.search}>업체 찾기</Link>
               </Button>
             </div>
           </SheetContent>

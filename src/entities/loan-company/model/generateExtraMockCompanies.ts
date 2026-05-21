@@ -1,3 +1,5 @@
+import { buildSupplementaryDescription } from '@/entities/loan-company/lib/buildSupplementaryDescription';
+
 import type { Company } from '@/entities/loan-company/model/types';
 
 const REGIONS = [
@@ -89,6 +91,7 @@ export function generateExtraMockCompanies(
       consultationTime:
         index % 4 === 0 ? '00:00 ~ 24:00' : `09:00 ~ ${18 + (index % 4)}:00`,
       description: `${region} 지역 ${products.join(', ')} 상담.`,
+      supplementaryDescription: buildSupplementaryDescription(name),
       situations,
     } satisfies Company;
   });

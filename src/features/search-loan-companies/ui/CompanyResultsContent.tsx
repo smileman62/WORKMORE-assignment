@@ -6,7 +6,9 @@ import { SearchX } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
 import { mockCompanies } from '@/entities/loan-company/model/mock';
+import { CARD_TAB_SLOT } from '@/entities/loan-company/ui/CompanySideTab';
 import { LoanCompanyCard } from '@/entities/loan-company/ui/LoanCompanyCard';
+import { cn } from '@/shared/lib/cn';
 import {
   filterCompanies,
   sortCompanies,
@@ -119,10 +121,19 @@ export function CompanyResultsContent() {
         </div>
       </div>
 
-      <ul className="flex flex-col gap-4">
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
         {filtered.map((company) => (
-          <li key={company.id}>
-            <LoanCompanyCard company={company} />
+          <li
+            key={company.id}
+            className={cn(
+              'min-w-0'
+            )}
+          >
+            <LoanCompanyCard
+              company={company}
+              variant="grid"
+              className="h-full overflow-visible"
+            />
           </li>
         ))}
       </ul>

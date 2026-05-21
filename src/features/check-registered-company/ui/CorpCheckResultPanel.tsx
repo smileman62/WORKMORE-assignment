@@ -53,7 +53,7 @@ export function CorpCheckResultPanel({ result, onReset }: CorpCheckResultPanelPr
           </Badge>
         </div>
       </CardHeader>
-      <CardContent className="flex flex-col gap-4 pt-0">
+      <CardContent className="flex flex-col gap-4 p-5 pt-0">
         <ResultRow
           icon={Building2}
           label="업체명"

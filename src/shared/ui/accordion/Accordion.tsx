@@ -8,6 +8,8 @@ export type AccordionItemProps = {
   children: ReactNode;
   defaultOpen?: boolean;
   className?: string;
+  /** sm: 14px, md: 16px 본문 */
+  textSize?: 'sm' | 'md';
 };
 
 export function AccordionItem({
@@ -15,7 +17,9 @@ export function AccordionItem({
   children,
   defaultOpen = false,
   className,
+  textSize = 'sm',
 }: AccordionItemProps) {
+  const isMd = textSize === 'md';
   return (
     <details
       className={cn(
@@ -24,14 +28,24 @@ export function AccordionItem({
       )}
       open={defaultOpen}
     >
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-sm font-medium text-foreground [&::-webkit-details-marker]:hidden">
+      <summary
+        className={cn(
+          'flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 font-medium text-foreground [&::-webkit-details-marker]:hidden',
+          isMd ? 'text-base' : 'text-sm',
+        )}
+      >
         {title}
         <ChevronDown
           className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180"
           aria-hidden
         />
       </summary>
-      <div className="border-t border-border px-5 py-4 text-sm text-muted-foreground">
+      <div
+        className={cn(
+          'border-t border-border px-5 py-4 text-muted-foreground',
+          isMd ? 'text-base' : 'text-sm',
+        )}
+      >
         {children}
       </div>
     </details>
