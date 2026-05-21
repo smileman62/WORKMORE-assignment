@@ -16,7 +16,7 @@ const NAV_TABS = [
   { label: '홈', href: '/', icon: Home },
   { label: '찾기', href: '/search', icon: Search },
   { label: '안전', href: '/safety', icon: Shield },
-  { label: '정보', href: '/community', icon: Newspaper },
+  { label: '정보', href: '/info', icon: Newspaper },
   { label: '사업자', href: '/business', icon: Building2 },
 ] as const;
 
@@ -33,7 +33,11 @@ export function MobileBottomNav() {
           const isActive =
             tab.href === '/'
               ? pathname === '/'
-              : pathname.startsWith(tab.href);
+              : tab.href === '/search'
+                ? pathname === '/search' || pathname.startsWith('/companies')
+                : tab.href === '/info'
+                  ? pathname.startsWith('/info') || pathname === '/support'
+                  : pathname.startsWith(tab.href);
           const Icon = tab.icon;
 
           return (

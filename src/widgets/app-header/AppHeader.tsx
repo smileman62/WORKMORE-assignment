@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
 
+import { ROUTES } from '@/shared/constants/routes';
 import { cn } from '@/shared/lib/cn';
 import { Button } from '@/shared/ui/button/Button';
 import {
@@ -17,8 +18,8 @@ import {
 const NAV_ITEMS = [
   { label: '업체 찾기', href: '/search' },
   { label: '안전센터', href: '/safety' },
-  { label: '금융 정보', href: '/community' },
-  { label: '사업자', href: '/business' },
+  { label: '금융 정보', href: '/info' },
+  { label: '사업자', href: ROUTES.business },
 ] as const;
 
 export function AppHeader() {
@@ -52,10 +53,10 @@ export function AppHeader() {
 
         <div className="hidden items-center gap-2 md:flex">
           <Button variant="ghost" size="sm" asChild>
-            <Link href="/business/login">로그인</Link>
+            <Link href={ROUTES.businessLogin}>로그인</Link>
           </Button>
           <Button variant="primary" size="sm" asChild>
-            <Link href="/search">업체 찾기</Link>
+            <Link href={ROUTES.search}>업체 찾기</Link>
           </Button>
         </div>
 
@@ -90,10 +91,10 @@ export function AppHeader() {
             </nav>
             <div className="mt-6 flex flex-col gap-2">
               <Button variant="outline" fullWidth asChild>
-                <Link href="/business/login">로그인</Link>
+                <Link href={ROUTES.businessLogin}>로그인</Link>
               </Button>
               <Button variant="primary" fullWidth asChild>
-                <Link href="/search">업체 찾기</Link>
+                <Link href={ROUTES.search}>업체 찾기</Link>
               </Button>
             </div>
           </SheetContent>

@@ -1,21 +1,27 @@
 import { Badge } from '@/shared/ui/badge/Badge';
 
 export type LoanCompanyBadgeProps = {
-  isAdvertised?: boolean;
-  isVerified?: boolean;
+  isAd?: boolean;
+  isRecommended?: boolean;
+  isVerifiedAvailable?: boolean;
 };
 
 export function LoanCompanyBadge({
-  isAdvertised,
-  isVerified,
+  isAd,
+  isRecommended,
+  isVerifiedAvailable,
 }: LoanCompanyBadgeProps) {
+  const listingLabel = isAd ? '광고' : isRecommended ? '추천' : '일반';
+
   return (
     <div className="flex flex-wrap gap-1.5">
-      {isAdvertised && <Badge variant="primary">추천</Badge>}
-      {isVerified ? (
-        <Badge variant="success">등록 확인</Badge>
+      <Badge variant={isAd ? 'warning' : isRecommended ? 'primary' : 'outline'}>
+        {listingLabel}
+      </Badge>
+      {isVerifiedAvailable ? (
+        <Badge variant="success">등록 확인 가능</Badge>
       ) : (
-        <Badge variant="outline">미확인</Badge>
+        <Badge variant="outline">등록 확인 필요</Badge>
       )}
     </div>
   );
