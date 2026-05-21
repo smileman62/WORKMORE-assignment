@@ -1,3 +1,5 @@
+import { companyMatchesProduct } from '@/entities/loan-company/lib/matchSearchProduct';
+import { companyMatchesRegion } from '@/entities/loan-company/lib/searchOptionCounts';
 import type { Company } from '@/entities/loan-company/model/types';
 
 import type { SearchFilter } from '../model/searchFilterTypes';
@@ -11,11 +13,11 @@ export function filterCompanies(
   return companies.filter((company) => {
     const regionMatch =
       filter.regions.length === 0 ||
-      filter.regions.some((region) => company.region.includes(region));
+      filter.regions.some((region) => companyMatchesRegion(company, region));
 
     const productMatch =
       filter.products.length === 0 ||
-      filter.products.some((product) => company.products.includes(product));
+      filter.products.some((product) => companyMatchesProduct(company, product));
 
     const situationMatch =
       filter.situations.length === 0 ||
@@ -24,7 +26,20 @@ export function filterCompanies(
       ) ??
         true);
 
-    return regionMatch && productMatch && situationMatch;
+    const keyword = filter.keyword?.trim().toLowerCase();
+    const keywordMatch =
+      !keyword ||
+      [
+        company.name,
+        company.tagline,
+        company.summary,
+        company.region,
+        company.regionLabel,
+        ...company.products,
+        ...(company.situations ?? []),
+      ].some((text) => text.toLowerCase().includes(keyword));
+
+    return regionMatch && productMatch && situationMatch && keywordMatch;
   });
 }
 

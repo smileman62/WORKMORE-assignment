@@ -44,7 +44,6 @@ export function CompanyDetailPage({ companyId }: CompanyDetailPageProps) {
             <LoanCompanyBadge
               isAd={company.isAd}
               isRecommended={company.isRecommended}
-              isVerifiedAvailable={company.isVerifiedAvailable}
             />
           </div>
           <div className="flex items-center gap-1.5 text-sm text-muted-foreground">

@@ -51,7 +51,7 @@ export function LoanSearchForm({
   const canSearch = hasSearchFilter(filter);
 
   const handleToggle = (
-    key: keyof SearchFilter,
+    key: 'regions' | 'situations' | 'products',
     value: string,
   ) => {
     setFilter((prev) => ({
@@ -84,7 +84,7 @@ export function LoanSearchForm({
         onToggle={(v) => handleToggle('regions', v)}
       />
       <FilterOptionGroup
-        label="상황"
+        label="직업"
         options={SITUATION_OPTIONS}
         selected={filter.situations}
         onToggle={(v) => handleToggle('situations', v)}
@@ -114,7 +114,7 @@ export function LoanSearchForm({
             <SheetHeader>
               <SheetTitle>검색 조건</SheetTitle>
               <SheetDescription>
-                지역, 상황, 상품을 선택해 업체를 찾아보세요.
+                지역, 직업, 상품을 선택해 업체를 찾아보세요.
               </SheetDescription>
             </SheetHeader>
             <div className="mt-6">{filterFields}</div>
@@ -159,7 +159,7 @@ export function LoanSearchForm({
       <p className="text-sm text-muted-foreground">
         {canSearch
           ? formatSearchFilterSummary(filter)
-          : '지역, 상황, 상품 중 하나 이상을 선택해 주세요.'}
+          : '지역, 직업, 상품 중 하나 이상을 선택해 주세요.'}
       </p>
 
       <div className="flex flex-col gap-2 sm:flex-row">
