@@ -23,13 +23,6 @@ export function CompanyResultsPage() {
               <CompanyResultsContent />
             </Suspense>
           </div>
-          <p className="mt-8 text-center text-xs text-muted-foreground">
-            UI 미리보기: URL에{' '}
-            <code className="rounded bg-muted px-1">?status=loading</code>,{' '}
-            <code className="rounded bg-muted px-1">error</code>,{' '}
-            <code className="rounded bg-muted px-1">empty</code>를 추가해 상태를
-            확인할 수 있어요.
-          </p>
         </div>
       </div>
     </AppShell>

@@ -13,7 +13,7 @@ export function BusinessJoinPage() {
       <div className="mx-auto max-w-3xl px-4 py-10 md:py-14">
         <SectionTitle
           title="업체 회원가입"
-          description="가입 후 광고 상품 신청·노출 관리가 가능합니다. (실제 가입 API 연동 전 안내)"
+          description="가입 후 광고 상품 신청·노출 관리가 가능합니다."
         />
         <div className="mt-8 rounded-xl border border-border bg-surface p-5 md:p-6">
           <ProcessSteps steps={SIGNUP_FLOW_STEPS} variant="horizontal" />

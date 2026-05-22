@@ -14,13 +14,12 @@ export function BusinessLoginPage() {
       <div className="mx-auto max-w-md px-4 py-10 md:py-14">
         <SectionTitle
           title="업체 로그인"
-          description="사업자 대시보드에 접속합니다. (인증 API 연동 전 UI)"
         />
         <Card className="mt-8">
           <CardHeader>
             <CardTitle className="text-base">로그인</CardTitle>
           </CardHeader>
-          <CardContent className="flex flex-col gap-4 p-5 pt-0">
+          <CardContent className="flex flex-col gap-4 p-5 pt-3">
             <div className="flex flex-col gap-2">
               <Label htmlFor="biz-id">아이디</Label>
               <Input id="biz-id" placeholder="사업자 아이디" autoComplete="username" />
