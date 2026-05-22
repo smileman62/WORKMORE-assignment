@@ -10,6 +10,7 @@ import { Button } from "@/shared/ui/button/Button";
 import { Card, CardContent } from "@/shared/ui/card/Card";
 import { SectionTitle } from "@/shared/ui/section-title/SectionTitle";
 import { AppShell } from "@/widgets/app-shell/AppShell";
+import { CompanyRelatedRecommendations } from "@/widgets/company-related-recommendations/CompanyRelatedRecommendations";
 
 export type CompanyDetailPageProps = {
   companyId: string;
@@ -100,6 +101,8 @@ export function CompanyDetailPage({ companyId }: CompanyDetailPageProps) {
           </Button>
         </div>
       </div>
+
+      <CompanyRelatedRecommendations company={company} />
     </AppShell>
   );
 }
