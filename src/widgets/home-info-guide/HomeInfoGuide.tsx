@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { GUIDE_SLIDES } from '@/widgets/home-info-guide/model/guideSlides';
-import type { GuideSlide } from '@/widgets/home-info-guide/model/guideSlides';
-import { GuideSlideCard } from '@/widgets/home-info-guide/ui/GuideSlideCard';
-import { cn } from '@/shared/lib/cn';
+import { GUIDE_SLIDES } from "@/widgets/home-info-guide/model/guideSlides";
+import type { GuideSlide } from "@/widgets/home-info-guide/model/guideSlides";
+import { GuideSlideCard } from "@/widgets/home-info-guide/ui/GuideSlideCard";
+import { cn } from "@/shared/lib/cn";
 
 const AUTOPLAY_INTERVAL_MS = 5000;
 const SLIDE_COUNT = GUIDE_SLIDES.length;
@@ -13,10 +13,7 @@ const SCROLL_TRANSITION_MS = 500;
 
 function buildLoopSlides(): GuideSlide[] {
   const first = GUIDE_SLIDES[0];
-  return [
-    ...GUIDE_SLIDES,
-    { ...first, id: `${first.id}-loop-clone` },
-  ];
+  return [...GUIDE_SLIDES, { ...first, id: `${first.id}-loop-clone` }];
 }
 
 export function HomeInfoGuide() {
@@ -44,7 +41,7 @@ export function HomeInfoGuide() {
     if (!el) return;
 
     isJumpingRef.current = true;
-    el.scrollTo({ left: 0, behavior: 'instant' });
+    el.scrollTo({ left: 0, behavior: "instant" });
     setActiveIndex(0);
 
     requestAnimationFrame(() => {
@@ -53,7 +50,7 @@ export function HomeInfoGuide() {
   }, []);
 
   const scrollToSlide = useCallback(
-    (scrollIndex: number, behavior: ScrollBehavior = 'smooth') => {
+    (scrollIndex: number, behavior: ScrollBehavior = "smooth") => {
       const el = scrollRef.current;
       if (!el) return;
       el.scrollTo({
@@ -77,7 +74,7 @@ export function HomeInfoGuide() {
     const current = getScrollIndex();
     const next = current + 1;
 
-    scrollToSlide(next, 'smooth');
+    scrollToSlide(next, "smooth");
 
     if (next >= SLIDE_COUNT) {
       window.setTimeout(handleLoopScrollEnd, SCROLL_TRANSITION_MS);
@@ -94,11 +91,11 @@ export function HomeInfoGuide() {
       const currentScrollIndex = getScrollIndex();
       if (currentScrollIndex >= SLIDE_COUNT) {
         resetToRealStart();
-        requestAnimationFrame(() => scrollToSlide(index, 'smooth'));
+        requestAnimationFrame(() => scrollToSlide(index, "smooth"));
         return;
       }
 
-      scrollToSlide(index, 'smooth');
+      scrollToSlide(index, "smooth");
     },
     [getScrollIndex, resetToRealStart, scrollToSlide],
   );
@@ -112,17 +109,17 @@ export function HomeInfoGuide() {
     observer.observe(el);
 
     const onScrollEnd = () => handleLoopScrollEnd();
-    el.addEventListener('scrollend', onScrollEnd);
+    el.addEventListener("scrollend", onScrollEnd);
 
     return () => {
       observer.disconnect();
-      el.removeEventListener('scrollend', onScrollEnd);
+      el.removeEventListener("scrollend", onScrollEnd);
     };
   }, [updateActiveIndex, handleLoopScrollEnd]);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
+      "(prefers-reduced-motion: reduce)",
     ).matches;
     if (prefersReducedMotion) return;
 
@@ -144,7 +141,7 @@ export function HomeInfoGuide() {
 
   return (
     <section
-      className="bg-surface px-4 py-10 md:py-14"
+      className="bg-surface px-4 py-10 md:py-28"
       aria-roledescription="carousel"
       aria-label="이용 전 꼭 알아두세요"
       onMouseEnter={() => {
@@ -172,8 +169,8 @@ export function HomeInfoGuide() {
         ref={scrollRef}
         onScroll={updateActiveIndex}
         className={cn(
-          'mt-6 flex snap-x snap-mandatory overflow-x-auto',
-          'scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
+          "mt-6 flex snap-x snap-mandatory overflow-x-auto",
+          "scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         )}
       >
         {loopSlides.map((slide, index) => (
@@ -200,13 +197,13 @@ export function HomeInfoGuide() {
             type="button"
             role="tab"
             aria-selected={activeIndex === index}
-            aria-label={`${index + 1}번째 안내: ${slide.category === 'safety' ? '안전 확인' : '서비스 안내'}`}
+            aria-label={`${index + 1}번째 안내: ${slide.category === "safety" ? "안전 확인" : "서비스 안내"}`}
             onClick={() => handleManualSelect(index)}
             className={cn(
-              'h-2.5 rounded-full transition-all duration-200',
+              "h-2.5 rounded-full transition-all duration-200",
               activeIndex === index
-                ? 'w-8 bg-primary'
-                : 'w-2.5 bg-border hover:bg-primary/50',
+                ? "w-8 bg-primary"
+                : "w-2.5 bg-border hover:bg-primary/50",
             )}
           />
         ))}

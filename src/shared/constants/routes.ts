@@ -15,8 +15,7 @@ export const ROUTES = {
   businessLogin: '/business/login',
   businessJoin: '/business/join',
   businessInquiry: '/business#inquiry',
-  /** @deprecated ROUTES.info 사용 */
-  community: '/info',
+  community: '/community',
 } as const;
 
 /** @deprecated ROUTES.safetyGuide 사용 */

@@ -14,5 +14,8 @@ export type Article = {
   category: ArticleCategory;
   publishedAt: string;
   isPopular?: boolean;
+  isNew?: boolean;
   readMinutes?: number;
+  viewCount?: number;
+  likeCount?: number;
 };

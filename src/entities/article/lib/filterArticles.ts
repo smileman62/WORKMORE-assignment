@@ -37,3 +37,7 @@ export function getPopularArticles(articles: Article[], limit = 4): Article[] {
     .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
     .slice(0, limit);
 }
+
+export function getLatestFinanceNews(articles: Article[], limit = 3): Article[] {
+  return getLatestByCategory(articles, 'finance-news', limit);
+}

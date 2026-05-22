@@ -16,10 +16,10 @@ import {
 } from '@/shared/ui/sheet/Sheet';
 
 const NAV_ITEMS = [
-  { label: '업체 찾기', href: '/search' },
-  { label: '안전센터', href: '/safety' },
-  { label: '금융 정보', href: '/info' },
-  { label: '사업자', href: ROUTES.business },
+  { label: '업체 찾기', href: ROUTES.search },
+  { label: '안전센터', href: ROUTES.safety },
+  { label: '커뮤니티', href: ROUTES.community },
+  { label: '고객센터', href: ROUTES.support },
 ] as const;
 
 export function AppHeader() {
@@ -28,28 +28,30 @@ export function AppHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4">
-        <Link
-          href="/"
-          className="text-lg font-bold text-foreground"
-          aria-label="대출나라 홈"
-        >
-          대출나라
-        </Link>
+        <div className="flex min-w-0 items-center gap-6 md:gap-8">
+          <Link
+            href={ROUTES.home}
+            className="shrink-0 text-lg font-bold text-foreground"
+            aria-label="대출나라 홈"
+          >
+            대출나라
+          </Link>
 
-        <nav
-          className="hidden items-center gap-6 md:flex"
-          aria-label="주요 메뉴"
-        >
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+          <nav
+            className="hidden items-center gap-5 pl-1 md:flex lg:gap-6"
+            aria-label="주요 메뉴"
+          >
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="whitespace-nowrap text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
 
         <div className="hidden md:flex">
           <Button variant="ghost" size="sm" asChild>
