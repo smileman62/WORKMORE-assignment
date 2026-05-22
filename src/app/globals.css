@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'pretendard/dist/web/variable/pretendardvariable.css';
+@import "tailwindcss";
+@import "pretendard/dist/web/variable/pretendardvariable.css";
 
 :root {
   /* Primary - Warm Orange */
@@ -15,6 +15,14 @@
   --muted-foreground: #6b6560;
   --border: #ebe8e2;
   --surface: #faf9f7;
+
+  /* Enterprise header */
+  --enterprise-header: #1e1c19;
+  --enterprise-header-border: rgb(255 255 255 / 0.1);
+
+  /* 업체 카드 인기 뱃지 */
+  --badge-popular: hsl(83, 88%, 42%);
+  --badge-popular-foreground: #ffffff;
 
   /* Semantic */
   --success: #2d8a5e;
@@ -46,6 +54,10 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
   --color-surface: var(--surface);
+  --color-enterprise-header: var(--enterprise-header);
+  --color-enterprise-header-border: var(--enterprise-header-border);
+  --color-badge-popular: var(--badge-popular);
+  --color-badge-popular-foreground: var(--badge-popular-foreground);
 
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
@@ -57,10 +69,11 @@
   --color-danger-foreground: var(--danger-foreground);
   --color-danger-muted: var(--danger-muted);
 
-  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
-    system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
-    'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', sans-serif;
+  --font-sans:
+    "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+    system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", sans-serif;
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);

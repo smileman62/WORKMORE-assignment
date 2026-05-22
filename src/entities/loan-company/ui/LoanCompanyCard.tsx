@@ -1,35 +1,28 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import {
-  Calendar,
-  Clock,
-  MapPin,
-  Phone,
-  Shield,
-  User,
-} from 'lucide-react';
+import Link from "next/link";
+import { Calendar, Clock, MapPin, Phone, Shield, User } from "lucide-react";
 
 import {
   buildCompanyFeatures,
   getCompanyRegionLabels,
   isCardHighlighted,
   resolveCardVariant,
-} from '@/entities/loan-company/lib/buildCompanyFeatures';
-import type { Company } from '@/entities/loan-company/model/types';
-import { CompanySideTab } from '@/entities/loan-company/ui/CompanySideTab';
-import { ROUTES } from '@/shared/constants/routes';
-import { cn } from '@/shared/lib/cn';
+} from "@/entities/loan-company/lib/buildCompanyFeatures";
+import type { Company } from "@/entities/loan-company/model/types";
+import { CompanySideTab } from "@/entities/loan-company/ui/CompanySideTab";
+import { ROUTES } from "@/shared/constants/routes";
+import { cn } from "@/shared/lib/cn";
 
-const CARD_MIN_HEIGHT = 'min-h-[320px]';
-const CARD_WIDTH_CLASS = 'w-[280px]';
-const MAX_VISIBLE_REGIONS = 3;
+const CARD_MIN_HEIGHT = "min-h-[320px]";
+const CARD_WIDTH_CLASS = "w-[280px]";
+const MAX_VISIBLE_REGIONS = 2;
 
 export type LoanCompanyCardProps = {
   company: Company;
   className?: string;
   /** basic | emphasized(인기·광고) | compact | list/grid(기본 레이아웃) */
-  variant?: 'basic' | 'emphasized' | 'compact' | 'list' | 'grid';
+  variant?: "basic" | "emphasized" | "compact" | "list" | "grid";
   /** 캐러셀 등 가로 스크롤용 고정 너비 */
   fixedWidth?: boolean;
 };
@@ -53,7 +46,7 @@ function RegionChips({ regions }: { regions: string[] }) {
       {extraCount > 0 && (
         <span
           className="inline-flex items-center rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-muted-foreground"
-          title={hiddenRegions.join(', ')}
+          title={hiddenRegions.join(", ")}
         >
           외 +{extraCount}
         </span>
@@ -63,11 +56,11 @@ function RegionChips({ regions }: { regions: string[] }) {
 }
 
 function FeatureTag({ label }: { label: string }) {
-  const Icon = label.includes('24')
+  const Icon = label.includes("24")
     ? Clock
-    : label.includes('당일')
+    : label.includes("당일")
       ? Calendar
-      : label.includes('무방문') || label.includes('비대면')
+      : label.includes("무방문") || label.includes("비대면")
         ? User
         : Shield;
 
@@ -92,11 +85,17 @@ function CardFeaturesSection({ features }: { features: string[] }) {
   );
 }
 
-function PhoneDisplay({ number, className }: { number: string; className?: string }) {
+function PhoneDisplay({
+  number,
+  className,
+}: {
+  number: string;
+  className?: string;
+}) {
   return (
     <p
       className={cn(
-        'mt-auto flex items-center gap-2.5 text-lg font-bold text-primary sm:text-xl',
+        "mt-auto flex items-center gap-2.5 text-lg font-bold text-primary sm:text-xl",
         className,
       )}
     >
@@ -116,11 +115,11 @@ function StandardCardContent({
   const features = buildCompanyFeatures(company);
 
   return (
-    <div className={cn('flex flex-1 flex-col', CARD_MIN_HEIGHT)}>
+    <div className={cn("flex flex-1 flex-col", CARD_MIN_HEIGHT)}>
       <div
         className={cn(
-          'px-5 pb-4 pt-5',
-          highlighted ? 'bg-[#f5c9a0]' : 'bg-background',
+          "px-5 pb-4 pt-5",
+          highlighted ? "bg-[#ff9d4c]" : "bg-background",
         )}
       >
         <RegionChips regions={getCompanyRegionLabels(company)} />
@@ -130,8 +129,8 @@ function StandardCardContent({
           </h3>
           <p
             className={cn(
-              'line-clamp-2 min-h-[3rem] text-base font-medium leading-relaxed sm:text-[17px]',
-              highlighted ? 'text-foreground/85' : 'text-foreground/75',
+              "line-clamp-2 min-h-[3rem] text-base font-medium leading-relaxed sm:text-[17px]",
+              highlighted ? "text-foreground/85" : "text-foreground/75",
             )}
           >
             {company.tagline || company.summary}
@@ -151,11 +150,11 @@ function CompactCardContent({ company }: { company: Company }) {
   const highlighted = isCardHighlighted(company);
 
   return (
-    <div className={cn('flex flex-1 flex-col', CARD_MIN_HEIGHT)}>
+    <div className={cn("flex flex-1 flex-col", CARD_MIN_HEIGHT)}>
       <div
         className={cn(
-          'px-4 pb-3 pt-4',
-          highlighted ? 'bg-[#f5c9a0]' : 'bg-background',
+          "px-4 pb-3 pt-4",
+          highlighted ? "bg-[#f5c9a0]" : "bg-background",
         )}
       >
         <RegionChips regions={getCompanyRegionLabels(company)} />
@@ -184,19 +183,19 @@ function CardSideTabs({ company }: { company: Company }) {
 export function LoanCompanyCard({
   company,
   className,
-  variant = 'list',
+  variant = "list",
   fixedWidth = false,
 }: LoanCompanyCardProps) {
   const detailHref = ROUTES.companyDetail(company.id);
   const resolvedVariant = resolveCardVariant(company, variant);
   const highlighted = isCardHighlighted(company);
-  const isCompact = resolvedVariant === 'compact';
+  const isCompact = resolvedVariant === "compact";
 
   return (
     <Link
       href={detailHref}
       className={cn(
-        'group block h-full shrink-0 overflow-visible focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+        "group block h-full shrink-0 overflow-visible focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
         fixedWidth && CARD_WIDTH_CLASS,
         className,
       )}
