@@ -1,10 +1,7 @@
-import { BusinessLoginPage } from '@/views/business/BusinessLoginPage';
+import { redirect } from 'next/navigation';
 
-export const metadata = {
-  title: '업체 로그인 | 대출나라',
-  description: '사업자 대시보드 로그인',
-};
+import { ROUTES } from '@/shared/constants/routes';
 
 export default function Page() {
-  return <BusinessLoginPage />;
+  redirect(ROUTES.enterpriseLogin);
 }

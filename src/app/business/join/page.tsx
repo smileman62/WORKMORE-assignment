@@ -1,10 +1,7 @@
-import { BusinessJoinPage } from '@/views/business/BusinessJoinPage';
+import { redirect } from 'next/navigation';
 
-export const metadata = {
-  title: '업체 회원가입 | 대출나라',
-  description: '등록 대출 업체 사업자 회원가입',
-};
+import { ROUTES } from '@/shared/constants/routes';
 
 export default function Page() {
-  return <BusinessJoinPage />;
+  redirect(ROUTES.enterpriseJoin);
 }
