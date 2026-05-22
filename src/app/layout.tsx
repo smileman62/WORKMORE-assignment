@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: '대출나라 리디자인',
   description:
     '내 조건에 맞는 등록 대출 업체를 찾고 상담 전 안전하게 확인하세요.',
+  icons: {
+    icon: [{ url: '/brand/favicon-32.png', sizes: '32x32', type: 'image/png' }],
+    apple: '/brand/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({
