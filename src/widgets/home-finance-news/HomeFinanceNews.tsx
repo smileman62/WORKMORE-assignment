@@ -13,7 +13,7 @@ export function HomeFinanceNews() {
   const articles = getLatestFinanceNews(mockArticles, HOME_FINANCE_NEWS_LIMIT);
 
   return (
-    <section className="bg-background px-4 py-10 md:py-32">
+    <section className="bg-background px-4 py-16 md:pt-32 md:pb-28">
       <div className="mx-auto max-w-4xl lg:max-w-6xl">
         <header className="text-center">
           <h2 className="text-xl font-bold text-foreground md:text-2xl">

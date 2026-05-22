@@ -43,7 +43,7 @@ export function AppFooter() {
   return (
     <footer className="border-t border-border bg-muted">
       <div className="mx-auto max-w-7xl px-4 py-10 md:py-12">
-        <div className="grid grid-cols-3 gap-10 md:grid-cols-3 md:gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8 lg:gap-12">
           {/* 고객센터 */}
           <section aria-labelledby="footer-customer-center">
             <FooterColumnTitle>고객센터</FooterColumnTitle>

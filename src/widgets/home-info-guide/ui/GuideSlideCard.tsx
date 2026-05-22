@@ -96,7 +96,7 @@ function IntroSlide({ slide }: { slide: GuideSlide }) {
 
       <div className="mt-6 flex flex-wrap gap-3">
         <Link
-          href={ROUTES.search}
+          href={ROUTES.companies}
           className="inline-flex items-center gap-1 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
         >
           조건으로 업체 찾기
