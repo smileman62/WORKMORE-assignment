@@ -3,16 +3,14 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import {
-  PRODUCT_OPTIONS,
-  REGION_OPTIONS,
-} from '@/entities/loan-company/model/constants';
+import { REGION_OPTIONS } from '@/entities/loan-company/model/constants';
 import {
   EMPTY_SEARCH_FILTER,
   hasSearchFilter,
   searchFilterToQueryString,
   type SearchFilter,
 } from '@/features/search-loan-companies/model/searchFilterTypes';
+import { ProductSingleSelect } from '@/features/search-loan-companies/ui/ProductSingleSelect';
 import { ROUTES } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/button/Button';
 import { FilterChip } from '@/shared/ui/filter-chip/FilterChip';
@@ -62,26 +60,15 @@ export function SearchWizard() {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-3">
-            <p className="text-sm font-semibold text-foreground">상품</p>
-            <div className="flex flex-wrap gap-2">
-              {PRODUCT_OPTIONS.slice(0, 4).map((product) => (
-                <FilterChip
-                  key={product}
-                  selected={filter.products.includes(product)}
-                  onClick={() =>
-                    setFilter((prev) => ({
-                      ...prev,
-                      products: toggleValue(prev.products, product),
-                    }))
-                  }
-                  aria-pressed={filter.products.includes(product)}
-                >
-                  {product}
-                </FilterChip>
-              ))}
-            </div>
-          </div>
+          <ProductSingleSelect
+            value={filter.product}
+            onChange={(product) =>
+              setFilter((prev) => ({
+                ...prev,
+                product,
+              }))
+            }
+          />
           <Button
             variant="primary"
             fullWidth

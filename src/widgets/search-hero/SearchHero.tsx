@@ -1,29 +1,28 @@
-'use client';
+"use client";
 
-import { ChevronDown, ChevronUp, Search } from 'lucide-react';
-import { useRouter } from 'next/navigation';
-import { type ReactNode, useEffect, useId, useRef, useState } from 'react';
+import { ChevronDown, ChevronUp, Search } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { type ReactNode, useEffect, useId, useRef, useState } from "react";
 
 import {
-  PRODUCT_FILTER_OPTIONS,
   REGION_FILTER_OPTIONS,
   SITUATION_OPTIONS,
-} from '@/entities/loan-company/model/constants';
+} from "@/entities/loan-company/model/constants";
 import {
   EMPTY_SEARCH_FILTER,
   hasSearchFilter,
   searchFilterToQueryString,
   type SearchFilter,
-} from '@/features/search-loan-companies/model/searchFilterTypes';
-import { ROUTES } from '@/shared/constants/routes';
-import { cn } from '@/shared/lib/cn';
-import { Button } from '@/shared/ui/button/Button';
-import { FilterChip } from '@/shared/ui/filter-chip/FilterChip';
+} from "@/features/search-loan-companies/model/searchFilterTypes";
+import { ProductSingleSelect } from "@/features/search-loan-companies/ui/ProductSingleSelect";
+import { ROUTES } from "@/shared/constants/routes";
+import { cn } from "@/shared/lib/cn";
+import { Button } from "@/shared/ui/button/Button";
 import {
   ProductFilterIcon,
   RegionFilterIcon,
   SituationFilterIcon,
-} from '@/widgets/search-hero/SearchFilterSectionIcons';
+} from "@/widgets/search-hero/SearchFilterSectionIcons";
 
 function toggleValue(list: string[], value: string): string[] {
   return list.includes(value)
@@ -31,18 +30,13 @@ function toggleValue(list: string[], value: string): string[] {
     : [...list, value];
 }
 
-const SELECTED_CONDITION_CHIP_CLASS =
-  'border-border bg-background text-foreground shadow-sm [&_span[role=button]]:text-muted-foreground [&_span[role=button]]:hover:bg-muted';
-
 function filterOptionsByQuery(
   options: readonly string[],
   query: string,
 ): string[] {
   const normalized = query.trim().toLowerCase();
   if (!normalized) return [...options];
-  return options.filter((option) =>
-    option.toLowerCase().includes(normalized),
-  );
+  return options.filter((option) => option.toLowerCase().includes(normalized));
 }
 
 function SearchOptionPill({
@@ -59,10 +53,10 @@ function SearchOptionPill({
       type="button"
       onClick={onClick}
       className={cn(
-        'inline-flex h-8 items-center rounded-full border px-3 text-xs font-medium transition-colors sm:text-sm',
+        "inline-flex h-8 items-center rounded-full border px-3 text-xs font-medium transition-colors sm:text-sm",
         selected
-          ? 'border-foreground bg-foreground text-background'
-          : 'border-border bg-muted/60 text-foreground hover:bg-muted',
+          ? "border-foreground bg-foreground text-background"
+          : "border-border bg-muted/60 text-foreground hover:bg-muted",
       )}
       aria-pressed={selected}
     >
@@ -145,10 +139,10 @@ type SearchFilterPanelProps = {
   productHeadingId: string;
   situationHeadingId: string;
   onToggleRegion: (region: string) => void;
-  onToggleProduct: (product: string) => void;
+  onSelectProduct: (product: string | undefined) => void;
   onToggleSituation: (situation: string) => void;
   onResetRegions: () => void;
-  onResetProducts: () => void;
+  onResetProduct: () => void;
   onResetSituations: () => void;
   onResetAll: () => void;
 };
@@ -160,25 +154,13 @@ function SearchFilterPanel({
   productHeadingId,
   situationHeadingId,
   onToggleRegion,
-  onToggleProduct,
+  onSelectProduct,
   onToggleSituation,
   onResetRegions,
-  onResetProducts,
+  onResetProduct,
   onResetSituations,
   onResetAll,
 }: SearchFilterPanelProps) {
-  const selectedTags = [
-    ...filter.regions.map((v) => ({ type: 'regions' as const, value: v })),
-    ...filter.situations.map((v) => ({ type: 'situations' as const, value: v })),
-    ...filter.products.map((v) => ({ type: 'products' as const, value: v })),
-  ];
-
-  const removeTag = (type: 'regions' | 'situations' | 'products', value: string) => {
-    if (type === 'regions') onToggleRegion(value);
-    else if (type === 'situations') onToggleSituation(value);
-    else onToggleProduct(value);
-  };
-
   return (
     <div
       className="overflow-hidden rounded-xl border border-border bg-background shadow-lg"
@@ -186,7 +168,7 @@ function SearchFilterPanel({
       aria-label="검색 조건 선택"
     >
       <div className="flex flex-col md:flex-row">
-        <div className="min-w-0 flex-7 border-b border-border md:border-b-0 md:border-r md:border-border">
+        <div className="min-w-0 flex-3 border-b border-border md:border-b-0 md:border-r md:border-border">
           <FilterSection
             icon={<RegionFilterIcon className="text-foreground" />}
             title="지역 선택"
@@ -199,7 +181,7 @@ function SearchFilterPanel({
             onReset={onResetRegions}
           />
         </div>
-        <div className="min-w-0 flex-4">
+        <div className="min-w-0 flex-2">
           <FilterSection
             icon={<SituationFilterIcon className="text-foreground" />}
             title="직업 선택"
@@ -214,50 +196,41 @@ function SearchFilterPanel({
         </div>
       </div>
 
-      <div className="border-t border-border">
-        <FilterSection
-          icon={<ProductFilterIcon className="text-primary" />}
-          title="상품 선택"
-          resetLabel="상품 초기화"
-          headingId={productHeadingId}
-          options={PRODUCT_FILTER_OPTIONS}
-          selected={filter.products}
-          query={query}
-          onToggle={onToggleProduct}
-          onReset={onResetProducts}
+      <div className="border-t border-border p-4">
+        <div className="mb-3 flex items-center justify-between gap-2">
+          <h3
+            id={productHeadingId}
+            className="flex items-center gap-2 text-base font-bold text-foreground"
+          >
+            <ProductFilterIcon className="text-primary" />
+            상품 선택
+          </h3>
+          <button
+            type="button"
+            onClick={onResetProduct}
+            className="shrink-0 text-xs text-muted-foreground transition-colors hover:text-primary"
+          >
+            상품 초기화
+          </button>
+        </div>
+        <ProductSingleSelect
+          value={filter.product}
+          onChange={onSelectProduct}
+          showLegend={false}
+          gridClassName="grid-cols-4 sm:grid-cols-5 md:grid-cols-6"
+          className="gap-2.5 px-2"
         />
       </div>
 
-      <div className="flex flex-col gap-1 border-t border-border bg-muted/40 px-4 py-3">
-        <div className="flex flex-wrap items-start gap-2">
-          <span className="w-full text-sm font-semibold text-muted-foreground">
-            선택한 조건
-          </span>
-          <div className="flex flex-wrap min-h-8.5 items-center gap-2">
-            {selectedTags.length === 0 ? (
-              <span className="text-sm text-muted-foreground">
-                지역·직업·상품을 선택하거나 검색어를 입력해 주세요
-              </span>
-            ) : (
-              selectedTags.map((tag) => (
-                <FilterChip
-                  key={`${tag.type}-${tag.value}`}
-                  showRemove
-                  onRemove={() => removeTag(tag.type, tag.value)}
-                  className={cn('h-8 text-xs', SELECTED_CONDITION_CHIP_CLASS)}
-                >
-                  {tag.value}
-                </FilterChip>
-              ))
-            )}
-          </div>
-        </div>
-
-        <div className="flex justify-end">
-          <Button type="button" variant="outline" size="sm" onClick={onResetAll}>
-            전체 초기화
-          </Button>
-        </div>
+      <div className="flex justify-end border-t border-border bg-muted/40 px-4 py-3">
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={onResetAll}
+        >
+          전체 초기화
+        </Button>
       </div>
     </div>
   );
@@ -273,7 +246,7 @@ export function SearchHero() {
   const situationHeadingId = useId();
 
   const [filter, setFilter] = useState<SearchFilter>(EMPTY_SEARCH_FILTER);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [panelOpen, setPanelOpen] = useState(false);
 
   const searchFilter: SearchFilter = {
@@ -293,7 +266,7 @@ export function SearchHero() {
 
   const handleResetAll = () => {
     setFilter(EMPTY_SEARCH_FILTER);
-    setQuery('');
+    setQuery("");
     inputRef.current?.focus();
   };
 
@@ -310,14 +283,14 @@ export function SearchHero() {
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setPanelOpen(false);
+      if (event.key === "Escape") setPanelOpen(false);
     };
 
-    document.addEventListener('mousedown', handlePointerDown);
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener('mousedown', handlePointerDown);
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [panelOpen]);
 
@@ -361,7 +334,7 @@ export function SearchHero() {
                 }}
                 onFocus={() => setPanelOpen(true)}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
+                  if (e.key === "Enter") {
                     e.preventDefault();
                     handleSearch();
                   }
@@ -370,7 +343,7 @@ export function SearchHero() {
                 className="min-w-0 flex-1 bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground md:text-base"
                 aria-expanded={panelOpen}
                 aria-haspopup="dialog"
-                aria-controls={panelOpen ? 'home-search-panel' : undefined}
+                aria-controls={panelOpen ? "home-search-panel" : undefined}
                 aria-label="업체 검색"
               />
             </div>
@@ -392,7 +365,7 @@ export function SearchHero() {
               size="icon"
               className="h-12 shrink-0 rounded-none border-l border-border md:h-14"
               onClick={() => setPanelOpen((open) => !open)}
-              aria-label={panelOpen ? '검색 조건 닫기' : '검색 조건 열기'}
+              aria-label={panelOpen ? "검색 조건 닫기" : "검색 조건 열기"}
               aria-expanded={panelOpen}
             >
               {panelOpen ? (
@@ -420,10 +393,10 @@ export function SearchHero() {
                     regions: toggleValue(prev.regions, region),
                   }))
                 }
-                onToggleProduct={(product) =>
+                onSelectProduct={(product) =>
                   setFilter((prev) => ({
                     ...prev,
-                    products: toggleValue(prev.products, product),
+                    product,
                   }))
                 }
                 onToggleSituation={(situation) =>
@@ -435,8 +408,8 @@ export function SearchHero() {
                 onResetRegions={() =>
                   setFilter((prev) => ({ ...prev, regions: [] }))
                 }
-                onResetProducts={() =>
-                  setFilter((prev) => ({ ...prev, products: [] }))
+                onResetProduct={() =>
+                  setFilter((prev) => ({ ...prev, product: undefined }))
                 }
                 onResetSituations={() =>
                   setFilter((prev) => ({ ...prev, situations: [] }))
