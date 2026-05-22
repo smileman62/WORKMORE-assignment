@@ -5,3 +5,11 @@ export function formatArticleDate(isoDate: string): string {
   const [, year, month, day] = match;
   return `${year.slice(2)}.${month}.${day}`;
 }
+
+/** 공지 목록·상세용 (2026. 05. 19) */
+export function formatNoticeDate(isoDate: string): string {
+  const match = isoDate.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!match) return isoDate;
+  const [, year, month, day] = match;
+  return `${year}. ${month}. ${day}`;
+}

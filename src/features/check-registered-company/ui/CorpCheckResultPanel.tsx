@@ -26,14 +26,23 @@ export function CorpCheckResultPanel({ result, onReset }: CorpCheckResultPanelPr
         icon={XCircle}
         title="조회 결과가 없어요"
         description="입력한 정보가 정확한지 확인하거나, 다른 검색 유형으로 다시 조회해 보세요."
-        action={
-          onReset
-            ? { label: '다시 조회', onClick: onReset }
-            : undefined
-        }
       >
-        <div className="mt-2 flex w-full max-w-sm flex-col gap-2">
-          <Button variant="outline" fullWidth asChild>
+        <div className="flex w-full max-w-md flex-col gap-2 sm:flex-row">
+          {onReset ? (
+            <Button
+              type="button"
+              variant="outline"
+              className="min-w-0 flex-1"
+              onClick={onReset}
+            >
+              다시 조회
+            </Button>
+          ) : null}
+          <Button
+            variant="outline"
+            className="min-w-0 flex-1"
+            asChild
+          >
             <Link href={ROUTES.search}>다른 업체 찾기</Link>
           </Button>
         </div>
@@ -73,10 +82,10 @@ export function CorpCheckResultPanel({ result, onReset }: CorpCheckResultPanelPr
         <ResultRow icon={Phone} label="광고용 전화번호" value={company.adPhone} />
 
         <div className="mt-2 flex flex-col gap-2 border-t border-border pt-4 sm:flex-row">
-          <Button variant="primary" fullWidth asChild>
+          <Button variant="primary" className="min-w-0 flex-1" asChild>
             <Link href={ROUTES.companies}>상담 계속하기</Link>
           </Button>
-          <Button variant="outline" fullWidth asChild>
+          <Button variant="outline" className="min-w-0 flex-1" asChild>
             <Link href={ROUTES.search}>다른 업체 찾기</Link>
           </Button>
         </div>

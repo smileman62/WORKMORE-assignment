@@ -1,8 +1,8 @@
-import { type LucideIcon } from 'lucide-react';
-import { type ReactNode } from 'react';
+import { type LucideIcon } from "lucide-react";
+import { type ReactNode } from "react";
 
-import { cn } from '@/shared/lib/cn';
-import { Button } from '@/shared/ui/button/Button';
+import { cn } from "@/shared/lib/cn";
+import { Button } from "@/shared/ui/button/Button";
 
 export type EmptyStateProps = {
   icon?: LucideIcon;
@@ -28,7 +28,7 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center gap-4 px-4 py-12 text-center',
+        "flex flex-col items-center justify-center gap-4 rounded-2xl border border-border px-4 py-4 text-center md:py-12",
         className,
       )}
     >
