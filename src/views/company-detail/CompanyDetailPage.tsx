@@ -1,15 +1,15 @@
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { MapPin } from 'lucide-react';
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { MapPin } from "lucide-react";
 
-import { LoanResultCalculator } from '@/features/calculate-loan-interest/ui/LoanResultCalculator';
-import { getCompanyById } from '@/entities/loan-company/model/mock';
-import { CompanyInfoPanel } from '@/entities/loan-company/ui/CompanyInfoPanel';
-import { ROUTES } from '@/shared/constants/routes';
-import { Button } from '@/shared/ui/button/Button';
-import { Card, CardContent } from '@/shared/ui/card/Card';
-import { SectionTitle } from '@/shared/ui/section-title/SectionTitle';
-import { AppShell } from '@/widgets/app-shell/AppShell';
+import { LoanResultCalculator } from "@/features/calculate-loan-interest/ui/LoanResultCalculator";
+import { getCompanyById } from "@/entities/loan-company/model/mock";
+import { CompanyInfoPanel } from "@/entities/loan-company/ui/CompanyInfoPanel";
+import { ROUTES } from "@/shared/constants/routes";
+import { Button } from "@/shared/ui/button/Button";
+import { Card, CardContent } from "@/shared/ui/card/Card";
+import { SectionTitle } from "@/shared/ui/section-title/SectionTitle";
+import { AppShell } from "@/widgets/app-shell/AppShell";
 
 export type CompanyDetailPageProps = {
   companyId: string;
@@ -29,7 +29,7 @@ export function CompanyDetailPage({ companyId }: CompanyDetailPageProps) {
 
   return (
     <AppShell>
-      <div className="mx-auto w-full max-w-4xl px-4 py-8 md:px-6 md:py-12 lg:px-8">
+      <div className="mx-auto w-full max-w-4xl px-6 py-8 md:px-12 md:py-12 lg:px-8">
         <section className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <h1 className="text-2xl font-bold text-foreground md:text-3xl">
