@@ -111,7 +111,7 @@ export function ContactSupportForm() {
             신고를 이용해 주세요.
           </p>
           <Button variant="primary" asChild>
-            <Link href={ROUTES.info}>정보 허브로 돌아가기</Link>
+            <Link href={ROUTES.supportFaq}>FAQ로 돌아가기</Link>
           </Button>
         </CardContent>
       </Card>

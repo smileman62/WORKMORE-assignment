@@ -1,5 +1,5 @@
 import { AccordionItem } from '@/shared/ui/accordion/Accordion';
-import type { FaqItem } from '@/features/contact-support/model/faqMock';
+import type { FaqItem } from '@/entities/faq/model/types';
 
 export type FaqAccordionProps = {
   items: FaqItem[];
