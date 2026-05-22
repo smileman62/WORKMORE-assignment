@@ -56,7 +56,7 @@ export function AppHeader() {
 
         <div className="hidden md:flex">
           <Button variant="ghost" size="sm" asChild>
-            <Link href={ROUTES.enterprise}>기업서비스</Link>
+            <Link href={ROUTES.enterprise}>기업 서비스</Link>
           </Button>
         </div>
 
@@ -91,7 +91,7 @@ export function AppHeader() {
             </nav>
             <div className="mt-6">
               <Button variant="outline" fullWidth asChild>
-                <Link href={ROUTES.enterprise}>기업서비스</Link>
+                <Link href={ROUTES.enterprise}>기업 서비스</Link>
               </Button>
             </div>
           </SheetContent>
