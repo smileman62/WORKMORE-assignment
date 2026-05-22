@@ -8,16 +8,12 @@ export type EnterprisePageCtaProps = {
   className?: string;
   primaryHref?: string;
   primaryLabel?: string;
-  showJoin?: boolean;
-  showInquiry?: boolean;
 };
 
 export function EnterprisePageCta({
   className,
   primaryHref = ROUTES.enterpriseInquiry,
   primaryLabel = '광고 문의하기',
-  showJoin = true,
-  showInquiry = true,
 }: EnterprisePageCtaProps) {
   return (
     <div
@@ -27,18 +23,8 @@ export function EnterprisePageCta({
       )}
     >
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 sm:flex-row sm:flex-wrap">
-        {showInquiry ? (
-          <Button variant="primary" asChild>
-            <Link href={primaryHref}>{primaryLabel}</Link>
-          </Button>
-        ) : null}
-        {showJoin ? (
-          <Button variant="outline" asChild>
-            <Link href={ROUTES.enterpriseJoin}>기업 등록하기</Link>
-          </Button>
-        ) : null}
-        <Button variant="ghost" asChild>
-          <Link href={ROUTES.enterprisePricing}>가격 안내</Link>
+        <Button variant="primary" asChild>
+          <Link href={primaryHref}>{primaryLabel}</Link>
         </Button>
       </div>
     </div>

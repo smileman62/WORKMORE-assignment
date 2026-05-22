@@ -54,7 +54,7 @@ export function BusinessHero() {
               asChild
               className="border-white/40 bg-transparent text-white hover:bg-white/10"
             >
-              <Link href={ROUTES.businessJoin}>업체 회원가입</Link>
+              <Link href={ROUTES.enterpriseInquiry}>광고 문의하기</Link>
             </Button>
             <Button
               variant="ghost"

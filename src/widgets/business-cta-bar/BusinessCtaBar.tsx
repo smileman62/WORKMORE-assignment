@@ -15,7 +15,7 @@ export function BusinessCtaBar() {
             <Link href={ROUTES.businessInquiry}>광고문의하기</Link>
           </Button>
           <Button variant="outline" fullWidth asChild>
-            <Link href={ROUTES.businessJoin}>업체 회원가입</Link>
+            <Link href={ROUTES.enterpriseInquiry}>광고 문의하기</Link>
           </Button>
           <Button variant="ghost" fullWidth asChild>
             <Link href={ROUTES.businessLogin}>업체 로그인</Link>

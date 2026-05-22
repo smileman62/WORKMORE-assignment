@@ -24,7 +24,7 @@ export function HomeServiceIntro() {
           </div>
 
           <Link
-            href={ROUTES.enterpriseJoin}
+            href={ROUTES.enterpriseInquiry}
             className={cn(
               "inline-flex h-12 shrink-0 items-center justify-center gap-1.5",
               "rounded-full bg-primary px-6 text-sm font-semibold text-primary-foreground",
@@ -33,7 +33,7 @@ export function HomeServiceIntro() {
             )}
           >
             <Plus className="h-4 w-4 shrink-0" aria-hidden />
-            업체 등록하기
+            광고 문의하기
           </Link>
         </div>
       </div>

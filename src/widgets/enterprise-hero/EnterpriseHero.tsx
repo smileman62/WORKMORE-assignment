@@ -42,15 +42,7 @@ export function EnterpriseHero() {
             asChild
             className="border-white/40 bg-white/10 text-white hover:bg-white/20"
           >
-            <Link href={ROUTES.enterprisePricing}>가격 안내</Link>
-          </Button>
-          <Button
-            variant="ghost"
-            size="lg"
-            asChild
-            className="text-white hover:bg-white/10"
-          >
-            <Link href={ROUTES.enterpriseJoin}>기업 등록하기</Link>
+            <Link href={ROUTES.enterpriseLogin}>기업 로그인</Link>
           </Button>
         </div>
       </div>

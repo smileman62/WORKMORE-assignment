@@ -1,6 +1,3 @@
-import Link from 'next/link';
-
-import { ROUTES } from '@/shared/constants/routes';
 import { Button } from '@/shared/ui/button/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card/Card';
 import { Input } from '@/shared/ui/input/Input';
@@ -44,23 +41,16 @@ export function EnterpriseLoginPage() {
               </Button>
               <p className="text-center text-sm text-muted-foreground">
                 계정이 없으신가요?{' '}
-                <Link
-                  href={ROUTES.enterpriseJoin}
-                  className="font-medium text-primary hover:underline"
+                <button
+                  type="button"
+                  disabled
+                  className="font-medium text-primary opacity-60"
                 >
-                  기업 등록하기
-                </Link>
+                  회원가입하기
+                </button>
               </p>
             </CardContent>
           </Card>
-          <div className="mt-6 flex flex-col items-center gap-2">
-            <Button variant="ghost" size="sm" asChild>
-              <Link href={ROUTES.enterpriseInquiry}>광고 문의하기</Link>
-            </Button>
-            <Button variant="ghost" size="sm" asChild>
-              <Link href={ROUTES.enterprise}>업체용 홈으로</Link>
-            </Button>
-          </div>
         </div>
       </section>
     </EnterpriseShell>

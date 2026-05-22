@@ -39,10 +39,10 @@ export function BusinessLoginPage() {
             <p className="text-center text-sm text-muted-foreground">
               계정이 없으신가요?{' '}
               <Link
-                href={ROUTES.businessJoin}
+                href={ROUTES.enterpriseInquiry}
                 className="font-medium text-primary hover:underline"
               >
-                업체 회원가입
+                광고 문의하기
               </Link>
             </p>
           </CardContent>

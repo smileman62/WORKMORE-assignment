@@ -19,7 +19,7 @@ export function BusinessSignupFlowSection() {
         </div>
         <div className="mt-8 flex justify-center">
           <Button variant="primary" asChild>
-            <Link href={ROUTES.businessJoin}>업체 회원가입</Link>
+            <Link href={ROUTES.enterpriseInquiry}>광고 문의하기</Link>
           </Button>
         </div>
       </div>

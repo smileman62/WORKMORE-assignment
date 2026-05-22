@@ -18,8 +18,6 @@ import {
 } from "@/shared/ui/sheet/Sheet";
 
 const ENTERPRISE_NAV_ITEMS = [
-  { label: "기업 등록하기", href: ROUTES.enterpriseJoin },
-  { label: "가격 안내", href: ROUTES.enterprisePricing },
   { label: "광고 문의", href: ROUTES.enterpriseInquiry },
 ] as const;
 
@@ -44,9 +42,7 @@ export function EnterpriseHeader() {
           >
             {ENTERPRISE_NAV_ITEMS.map((item) => {
               const isActive =
-                pathname === item.href ||
-                (item.href !== ROUTES.enterprise &&
-                  pathname.startsWith(item.href));
+                pathname === item.href || pathname.startsWith(item.href);
 
               return (
                 <Link
@@ -68,10 +64,11 @@ export function EnterpriseHeader() {
           <Button
             variant="outline"
             size="sm"
-            asChild
+            type="button"
+            disabled
             className="border-white/30 bg-transparent text-white hover:bg-white/10"
           >
-            <Link href={ROUTES.enterpriseJoin}>기업 회원가입</Link>
+            회원가입
           </Button>
           <Button
             variant="primary"
@@ -114,13 +111,8 @@ export function EnterpriseHeader() {
               ))}
             </nav>
             <div className="mt-6 flex flex-col gap-2">
-              <Button variant="outline" fullWidth asChild>
-                <Link
-                  href={ROUTES.enterpriseJoin}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  기업 회원가입
-                </Link>
+              <Button variant="outline" fullWidth type="button" disabled>
+                회원가입
               </Button>
               <Button variant="primary" fullWidth asChild>
                 <Link

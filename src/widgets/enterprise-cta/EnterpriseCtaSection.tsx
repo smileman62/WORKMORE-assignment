@@ -27,14 +27,6 @@ export function EnterpriseCtaSection() {
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Button variant="primary" size="lg" asChild>
-            <Link href={ROUTES.enterpriseJoin}>기업 등록하기</Link>
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            asChild
-            className="border-white/40 bg-transparent text-white hover:bg-white/10"
-          >
             <Link href={ROUTES.enterpriseInquiry}>광고 문의하기</Link>
           </Button>
         </div>
