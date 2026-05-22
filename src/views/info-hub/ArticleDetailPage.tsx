@@ -1,12 +1,11 @@
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import { getArticleNeighbors } from '@/entities/article/lib/getArticleNeighbors';
 import { ARTICLE_CATEGORY_LABELS } from '@/entities/article/model/constants';
 import { getArticleById } from '@/entities/article/model/mock';
-import { ROUTES } from '@/shared/constants/routes';
 import { Badge } from '@/shared/ui/badge/Badge';
-import { Button } from '@/shared/ui/button/Button';
 import { AppShell } from '@/widgets/app-shell/AppShell';
+import { ArticleDetailNav } from '@/views/info-hub/ui/ArticleDetailNav';
 
 export type ArticleDetailPageProps = {
   articleId: string;
@@ -19,16 +18,29 @@ export function ArticleDetailPage({ articleId }: ArticleDetailPageProps) {
     notFound();
   }
 
+  const neighbors = getArticleNeighbors(articleId) ?? {
+    prev: null,
+    next: null,
+  };
   const paragraphs = article.content.split('\n').filter(Boolean);
 
   return (
     <AppShell>
       <article className="mx-auto max-w-3xl px-4 py-8 md:py-12">
-        <div className="flex flex-wrap items-center gap-2">
+        <ArticleDetailNav
+          category={article.category}
+          neighbors={neighbors}
+          placement="top"
+        />
+
+        <div className="mt-8 flex flex-wrap items-center gap-2">
           <Badge variant="outline">
             {ARTICLE_CATEGORY_LABELS[article.category]}
           </Badge>
-          <time className="text-sm text-muted-foreground" dateTime={article.publishedAt}>
+          <time
+            className="text-sm text-muted-foreground"
+            dateTime={article.publishedAt}
+          >
             {article.publishedAt}
           </time>
           {article.readMinutes && (
@@ -37,8 +49,12 @@ export function ArticleDetailPage({ articleId }: ArticleDetailPageProps) {
             </span>
           )}
         </div>
-        <h1 className="mt-4 text-2xl font-bold text-foreground">{article.title}</h1>
-        <p className="mt-3 text-base text-muted-foreground">{article.summary}</p>
+        <h1 className="mt-4 text-2xl font-bold text-foreground">
+          {article.title}
+        </h1>
+        <p className="mt-3 text-base text-muted-foreground">
+          {article.summary}
+        </p>
 
         <div className="mt-8 flex flex-col gap-4 border-t border-border pt-8">
           {paragraphs.map((para) => (
@@ -48,14 +64,11 @@ export function ArticleDetailPage({ articleId }: ArticleDetailPageProps) {
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col gap-2 sm:flex-row">
-          <Button variant="outline" asChild>
-            <Link href={ROUTES.info}>목록으로</Link>
-          </Button>
-          <Button variant="primary" asChild>
-            <Link href={ROUTES.support}>FAQ · 1:1 문의</Link>
-          </Button>
-        </div>
+        <ArticleDetailNav
+          category={article.category}
+          neighbors={neighbors}
+          placement="bottom"
+        />
       </article>
     </AppShell>
   );

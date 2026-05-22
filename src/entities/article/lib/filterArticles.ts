@@ -1,5 +1,8 @@
 import type { Article, ArticleCategory } from '@/entities/article/model/types';
-import type { InfoHubTab } from '@/entities/article/model/constants';
+import type {
+  FinanceInfoTab,
+  InfoHubTab,
+} from '@/entities/article/model/constants';
 
 export function filterArticlesByTab(
   articles: Article[],
@@ -40,4 +43,13 @@ export function getPopularArticles(articles: Article[], limit = 4): Article[] {
 
 export function getLatestFinanceNews(articles: Article[], limit = 3): Article[] {
   return getLatestByCategory(articles, 'finance-news', limit);
+}
+
+export function filterArticlesByFinanceTab(
+  articles: Article[],
+  tab: FinanceInfoTab,
+): Article[] {
+  return articles
+    .filter((a) => a.category === tab)
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
 }

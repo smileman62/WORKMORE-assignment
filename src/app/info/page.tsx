@@ -1,9 +1,8 @@
 import { InfoHubPage } from '@/views/info-hub/InfoHubPage';
 
 export const metadata = {
-  title: '정보 허브 | 대출나라',
-  description:
-    '이용안내, 공지사항, 금융뉴스, 금융TIP, 질문과답변, 대부업뉴스를 확인하세요.',
+  title: '금융정보 | 대출나라',
+  description: '금융 팁, 금융 뉴스, 언론사 뉴스를 확인하세요.',
 };
 
 export default function Page() {

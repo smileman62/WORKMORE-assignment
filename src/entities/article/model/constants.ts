@@ -27,3 +27,12 @@ export const INFO_HUB_TABS: { id: InfoHubTab; label: string }[] = [
     label: ARTICLE_CATEGORY_LABELS[id],
   })),
 ];
+
+/** 금융정보 페이지 탭 */
+export type FinanceInfoTab = 'finance-tip' | 'finance-news' | 'loan-industry-news';
+
+export const FINANCE_INFO_TABS: { id: FinanceInfoTab; label: string }[] = [
+  { id: 'finance-tip', label: '금융 팁' },
+  { id: 'finance-news', label: '금융 뉴스' },
+  { id: 'loan-industry-news', label: '언론사 뉴스' },
+];

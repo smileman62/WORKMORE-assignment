@@ -13,6 +13,8 @@ export type Article = {
   content: string;
   category: ArticleCategory;
   publishedAt: string;
+  /** 목록·카드용 썸네일 (없으면 이미지 영역 미표시) */
+  thumbnailUrl?: string;
   isPopular?: boolean;
   isNew?: boolean;
   readMinutes?: number;
