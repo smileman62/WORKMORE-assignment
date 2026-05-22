@@ -197,7 +197,7 @@ export function HomeInfoGuide() {
             type="button"
             role="tab"
             aria-selected={activeIndex === index}
-            aria-label={`${index + 1}번째 안내: ${slide.category === "safety" ? "안전 확인" : "서비스 안내"}`}
+            aria-label={`${index + 1}번째 안내: ${slide.title.replace(/\n/g, " ")}`}
             onClick={() => handleManualSelect(index)}
             className={cn(
               "h-2.5 rounded-full transition-all duration-200",
